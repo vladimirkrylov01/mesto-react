@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Button = ({onSubmit, name, textValue}) => {
+const Button = ({ name, buttonText}) => {
   return (
     <button
              className={`form__submit popup__button-submit popup__button-${name}`}
-             type="submit" onClick={onSubmit}>{textValue}
+             type="submit">{buttonText}
     </button>
   );
 };

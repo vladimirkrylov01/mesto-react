@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {api} from "../utils/Api";
 import Profile from "./Profile";
+import Loader from "./UI/Loader";
 import Card from "./Card.jsx";
 
-function Main({onCardClick,...props}) {
+function Main({onCardClick, ...props}) {
   const [userName, setUserName] = useState('aaa')
   const [userDescription, setUserDescription] = useState('xx')
   const [userAvatar, setUserAvatar] = useState()
@@ -13,22 +14,27 @@ function Main({onCardClick,...props}) {
 
   // первичная отрисовка данных
   useEffect(() => {
-    api.getUserInfo()
+    api.getUserInfo()     // запрос для Profile
       .then((userData) => {
         setUserName(userData.name)
         setUserDescription(userData.about)
         setUserAvatar(userData.avatar)
-        setLoading(false)
       })
-    api.getInitialCards()
+      .catch(console.error)
+
+    api.getInitialCards()      // запрос для отрисовки карточек
       .then((cardsData) => {
         setCards(cardsData)
+        setLoading(false)
       })
+      .catch(console.error)
   }, [])
 
   return (
+
+
     loading
-      ? 'LOADING'
+      ? <><Loader/></>
       : <main className='content'>
 
         <Profile props={props}
@@ -37,13 +43,13 @@ function Main({onCardClick,...props}) {
                  avatar={userAvatar}/>
         <section className="cards-grid">
 
-          {cards.map(card =>
+          {cards.map(card => (
             <Card
               card={card}
               key={card._id}
               onCardClick={onCardClick}
             />
-          )}
+          ))}
         </section>
 
       </main>

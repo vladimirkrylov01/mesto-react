@@ -5,15 +5,14 @@ const Profile = ({title,prof,avatar,props}) => {
   // props.profileData = ([title, prof]) => {
   //   return {title, prof}
   // }
-
   return (
     <section className="profile">
       <div className="profile__content">
         <div className="profile__container">
           <img className="profile__avatar"
-               style={{ backgroundImage: `url(${avatar})` }}
-               src="#"
-               alt="#"/>
+               src={avatar}
+               alt={`Название - ${title}`}
+          />
           <div className="profile__overlay" onClick={props.onEditAvatar}>
             <img className="profile__pen" src={profilePen}
                  alt="Карандаш"/>

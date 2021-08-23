@@ -1,0 +1,21 @@
+.circle{
+    width: 30px;
+    height: 30px;
+    /*border-radius: 50%;*/
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    animation: rotate 1.3s ease infinite ;
+}
+
+@keyframes rotate{
+    from
+    {transform: rotate(0deg);
+    }
+    to
+
+    {transform: rotate(360deg);
+    }
+}

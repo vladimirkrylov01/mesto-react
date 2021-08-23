@@ -6,9 +6,9 @@ const Card = ({...props}) => {
     props.onCardClick(props.card)
   }
   return (
-    <article className="card" onClick={handleCardClick}>
+    <article className="card" >
       <button className="card__delete-button" type="button" aria-label="Удалить"/>
-      <div className="card__image"
+      <div className="card__image" onClick={handleCardClick}
            style={{backgroundImage: `url(${props.card.link})`}}
 
       />

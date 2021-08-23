@@ -1,6 +1,9 @@
 @import url('../vendor/normalize.css');
 @import url('../fonts/fonts.css');
 
+@import url('../blocks/loader-container/loader-container.css');
+@import url('../blocks/circle/circle.css');
+
 @import url('../blocks/main-container/main-container.css');
 @import url('../blocks/wrapper/wrapper.css');
 @import url('../blocks/hidden/hidden.css');
