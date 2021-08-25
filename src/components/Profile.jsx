@@ -1,17 +1,14 @@
-import profilePen from "../images/profile/profilePen.png";
+import profilePen from "../images/profile/edit.svg";
 import React from "react";
-const Profile = ({title,prof,avatar,props}) => {
+const Profile = ({...props}) => {
 
-  // props.profileData = ([title, prof]) => {
-  //   return {title, prof}
-  // }
   return (
     <section className="profile">
       <div className="profile__content">
         <div className="profile__container">
           <img className="profile__avatar"
-               src={avatar}
-               alt={`Название - ${title}`}
+               src={props.avatar}
+               alt={`Название - ${props.title}`}
           />
           <div className="profile__overlay" onClick={props.onEditAvatar}>
             <img className="profile__pen" src={profilePen}
@@ -20,8 +17,8 @@ const Profile = ({title,prof,avatar,props}) => {
         </div>
         <div className="profile__info">
           <div className="profile__edit">
-            <h1 className="profile__title">{title}</h1>
-            <p className="profile__profession">{prof}</p>
+            <h1 className="profile__title">{props.title}</h1>
+            <p className="profile__profession">{props.prof}</p>
           </div>
           <button className="profile__button-edit"
                   type="button" onClick={props.onEditProfile}/>

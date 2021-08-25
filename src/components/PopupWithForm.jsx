@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from "./Button";
 
 const PopupWithForm = ({...props}) => {
   return (
@@ -16,10 +17,7 @@ const PopupWithForm = ({...props}) => {
           {props.children}
           </fieldset>
         </form>
-        <button
-          className={`form__submit popup__button-submit popup__button-${props.name}`}
-          type="submit">{props.buttonText}
-        </button>
+        <Button {...props}/>
       </div>
     </section>
   );

@@ -3,6 +3,10 @@
 
 @import url('../blocks/loader-container/loader-container.css');
 @import url('../blocks/circle/circle.css');
+@import url('../blocks/loader/loader.css');
+@import url('../blocks/one.css');
+@import url('../blocks/two.css');
+@import url('../blocks/three.css');
 
 @import url('../blocks/main-container/main-container.css');
 @import url('../blocks/wrapper/wrapper.css');

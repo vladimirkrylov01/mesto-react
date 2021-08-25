@@ -4,66 +4,55 @@ import Header from './Header.jsx'
 import Footer from './Footer.jsx'
 import Main from "./Main.jsx";
 import PopupWithForm from "./PopupWithForm.jsx";
-// import Button from "./Button.jsx";
 import ImagePopup from "./ImagePopup.jsx";
 
 export default function App() {
 
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
-  const [isPreviewPopupOpen, setIsPreviewPopupOpen] = useState(false)
-
-
-
-  const [profileData,setProfileData] = useState(
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(true)
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(true)
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(true)
+  const [isPreviewPopupOpen, setIsPreviewPopupOpen] = useState(true)
+  const [profileData, setProfileData] = useState(
     {
-      name:'',
-      prof:''
+      name: '',
+      prof: ''
     })
-
   const [placeTitle, setPlaceTitle] = useState('')
   const [placeLink, setPlaceLink] = useState('')
-
-  const[avatarLink,setAvatarLink] = useState('')
-
+  const [avatarLink, setAvatarLink] = useState('')
   const [selectedCard, setSelectedCard] = useState({})
 
 
-
-  // Значения из Профайла
-
-
-
   function closeAllPopups() {
-    setIsEditAvatarPopupOpen(false)
-    setIsEditProfilePopupOpen(false)
-    setIsAddPlacePopupOpen(false)
-    setIsPreviewPopupOpen(false)
+    setIsEditAvatarPopupOpen(true)
+    setIsEditProfilePopupOpen(true)
+    setIsAddPlacePopupOpen(true)
+    setIsPreviewPopupOpen(true)
     setSelectedCard({})
   }
 
   function handleCardClick(card) {
-    setIsPreviewPopupOpen(true)
+    setIsPreviewPopupOpen(false)
     setSelectedCard(card)
   }
 
   function handleEditAvatarClick() {
-    setIsEditAvatarPopupOpen(true)
+    setIsEditAvatarPopupOpen(false)
   }
 
   function handleEditProfileClick() {
-    setIsEditProfilePopupOpen(true)
+    setIsEditProfilePopupOpen(false)
   }
 
   function handleAddPlaceClick() {
-    setIsAddPlacePopupOpen(true)
+    setIsAddPlacePopupOpen(false)
   }
 
   // submit - создаём новую карточку
   function submitAddPlace() {
 
   }
+
 
   // submit - редактируем аватар
   function submitEditAvatar() {
@@ -72,29 +61,23 @@ export default function App() {
 
   function submitEditProfile(e) {
     e.preventDefault()
-    // передаём из инпутов в Профайл
-    // console.log(`я вызван при сабмите {profileName}`)
     setIsEditProfilePopupOpen(false) // закрываем попап
   }
 
   return (
     <div className='wrapper'>
       <div className="page">
-
         <Header/>
-
         <Main
           onEditProfile={handleEditProfileClick}
           onEditAvatar={handleEditAvatarClick}
           onAddPlace={handleAddPlaceClick}
           onCardClick={handleCardClick}
-          // profileData={profileData}
         />
-
         <PopupWithForm
           name={'editProfile'}
           title={'Редактировать профиль'}
-          active={!isEditProfilePopupOpen}
+          active={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           buttonText={'Сохранить'}
           submit={submitEditProfile}
@@ -125,11 +108,10 @@ export default function App() {
             </label>
           </>
         </PopupWithForm>
-
         <PopupWithForm
           name='addPlace'
           title='Новое место'
-          active={!isAddPlacePopupOpen}
+          active={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           buttonText={'Создать'}
           submit={submitAddPlace}
@@ -160,11 +142,10 @@ export default function App() {
           </>
 
         </PopupWithForm>
-
         <PopupWithForm
           name='editAvatar'
           title='Редактировать аватар'
-          active={!isEditAvatarPopupOpen}
+          active={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           buttonText={'Сохранить'}
           submit={submitEditAvatar}
@@ -183,11 +164,10 @@ export default function App() {
           </>
 
         </PopupWithForm>
-
         <ImagePopup
           card={selectedCard}
           onClose={closeAllPopups}
-          active={!isPreviewPopupOpen}
+          active={isPreviewPopupOpen}
         />
         <Footer/>
       </div>

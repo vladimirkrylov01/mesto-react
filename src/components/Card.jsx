@@ -2,6 +2,8 @@ import React from 'react'
 
 const Card = ({...props}) => {
 
+  console.log(`карточки отрисовались ${new Date()}`)
+
   function handleCardClick () {
     props.onCardClick(props.card)
   }
