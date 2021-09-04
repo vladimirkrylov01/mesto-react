@@ -12,12 +12,16 @@ const PopupWithForm = ({...props}) => {
                 aria-label="Закрыть" onClick={props.onClose}>
         </button>
         <h2 className="popup__title">{props.title}</h2>
-        <form className={`form ${props.name}`} name={props.name} onSubmit={props.submit}>
+        <form className={`form ${props.name}`} name={props.name}
+              onSubmit={props.onSubmit}>
           <fieldset className="form__set">
           {props.children}
           </fieldset>
+          <Button
+          name={props.name}
+          buttonText={props.buttonText}
+          />
         </form>
-        <Button {...props}/>
       </div>
     </section>
   );

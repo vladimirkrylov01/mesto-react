@@ -35,7 +35,7 @@ class Api {
     return this._request('users/me', 'GET')
   }
 
-  getInitialCards () {
+  getCardList () {
     return this._request('cards', 'GET')
   }
 
@@ -51,7 +51,7 @@ class Api {
     return this._request('cards', 'POST', cardData)
   }
 
-  likeCard (cardID, isLiked) {
+  changeLikeCardStatus (cardID, isLiked) {
     return this._request(`cards/likes/${cardID}`, isLiked ? 'DELETE' : 'PUT')
   }
 

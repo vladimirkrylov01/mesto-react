@@ -1,57 +1,29 @@
-import React, {useEffect, useState} from 'react';
-import {api} from "../utils/Api";
+import React, {useContext} from 'react';
 import Profile from "./Profile";
-import Loader from "./UI/Loader";
 import Card from "./Card";
+import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
 function Main({...props}) {
-  const [userName, setUserName] = useState('')
-  const [userDescription, setUserDescription] = useState('')
-  const [userAvatar, setUserAvatar] = useState()
-  const [loading, setLoading] = useState(true)
-  const [cards, setCards] = useState([]) // пустой массив для карточек
-
-  // первичная отрисовка данных
-  useEffect(() => {
-    api.getUserInfo()     // запрос для Profile
-      .then((userData) => {
-        setUserName(userData.name)
-        setUserDescription(userData.about)
-        setUserAvatar(userData.avatar)
-        console.log(`Данные для Profile получены - ${new Date()}`)
-
-      })
-      .catch(console.error)
-
-    api.getInitialCards()      // запрос для отрисовки карточек
-      .then((cardsData) => {
-        setCards(cardsData)
-        setLoading(false)
-        console.log(`Данные для карточек получены - ${new Date()}`)
-
-      })
-      .catch(console.error)
-  }, [])
-
+  const currentUser = useContext(CurrentUserContext)
   return (
-    loading
-      ? <><Loader/></>
-      : <main className='content'>
+     <main className='content'>
         <Profile {...props}
-                 title={userName}
-                 prof={userDescription}
-                 avatar={userAvatar}
+                 title={currentUser.name}
+                 prof={currentUser.about}
+                 avatar={currentUser.avatar}
         />
         <section className="cards-grid">
-          {cards.map(card => (
+          {props.cards.map(card => (
             <Card
+              onCardDelete={props.onCardDelete}
+              onCardLike={props.onCardLike}
+              currentUser={currentUser}
               card={card}
               key={card._id}
               onCardClick={props.onCardClick}
             />
           ))}
         </section>
-
       </main>
   )
 }
