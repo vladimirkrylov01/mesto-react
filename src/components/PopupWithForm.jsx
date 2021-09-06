@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from "./Button";
 
-const PopupWithForm = ({...props}) => {
+const PopupWithForm = (props) => {
   return (
     <section className={props.active ?
       `popup popup_type_${props.name}` :

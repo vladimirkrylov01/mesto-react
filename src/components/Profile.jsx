@@ -1,6 +1,6 @@
 import profilePen from "../images/profile/edit.svg";
 import React from "react";
-const Profile = ({...props}) => {
+const Profile = (props) => {
 
   return (
     <section className="profile">
@@ -18,7 +18,7 @@ const Profile = ({...props}) => {
         <div className="profile__info">
           <div className="profile__edit">
             <h1 className="profile__title">{props.title}</h1>
-            <p className="profile__profession">{props.prof}</p>
+            <p className="profile__profession">{props.profession}</p>
           </div>
           <button className="profile__button-edit"
                   type="button" onClick={props.onEditProfile}/>
